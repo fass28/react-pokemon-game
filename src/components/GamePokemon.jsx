@@ -22,7 +22,7 @@ export const GamePokemon = ({
 
       {!loading && !hasError && (
         <div id="main">
-          <h1>Quién es este Pokémon?</h1>
+          <h1>Who is that Pokémon?</h1>
 
           <Pokemon
             pokemonImage={pokemonSeleted.image}
@@ -39,10 +39,10 @@ export const GamePokemon = ({
             <>
               <div id="message" className={validation ? "success" : "error"}>
                 <h4>
-                  {validation ? "Correcto" : "Oops"}, {pokemonSeleted.name}
+                  {validation ? "Correct!" : "Oops!"}, {pokemonSeleted.name}
                 </h4>
               </div>
-              <button onClick={handleNew}>Nuevo Juego</button>
+              <button onClick={handleNew}>New Game</button>
             </>
           )}
         </div>
