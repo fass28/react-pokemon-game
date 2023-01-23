@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { getRandomNumbers } from "../helpers/random";
 
 const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon";
-const TOTAL_RANDOM_NUMBERS = 4
-/* const RANGE_BOTTOM_POKEMONS = 150
-const RANGE_TOP_POKEMONS = 160 */
 
-export const usePokemon = (range_bottom, range_top) => {
+export const usePokemon = ({ range_bottom, range_top, total }) => {
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [pokemons, setPokemons] = useState([]);
@@ -37,7 +34,7 @@ export const usePokemon = (range_bottom, range_top) => {
   }
 
   const getPokemons = async () => {
-    const randomNumbers = getRandomNumbers(TOTAL_RANDOM_NUMBERS, range_bottom, range_top)
+    const randomNumbers = getRandomNumbers(total, range_bottom, range_top)
 
     let randomPokemons = [];
     const pokemonsPromises = []
