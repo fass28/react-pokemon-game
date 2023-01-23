@@ -10,6 +10,8 @@ export const AppRouter = () => {
     <>
       <NavBar />
 
+      <hr />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/s1-kanto" element={<S1Kanto />} />

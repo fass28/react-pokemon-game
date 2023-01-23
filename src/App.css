@@ -59,8 +59,9 @@ body {
 }
 
 .navbar {
+  padding: 20px 0;
   display: flex;
-  justify-content: start;
+  justify-content: center;
 }
 
 .navbar a {
