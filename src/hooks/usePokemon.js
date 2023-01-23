@@ -3,14 +3,24 @@ import { getRandomNumbers } from "../helpers/random";
 
 const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon";
 const TOTAL_RANDOM_NUMBERS = 4
-const RANGE_BOTTOM_POKEMONS = 150
-const RANGE_TOP_POKEMONS = 160
+/* const RANGE_BOTTOM_POKEMONS = 150
+const RANGE_TOP_POKEMONS = 160 */
 
-export const usePokemon = () => {
+export const usePokemon = (range_bottom, range_top) => {
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [pokemons, setPokemons] = useState([]);
   const [pokemonSeleted, setPokemonSelected] = useState(null);
+
+  const [showShadow, setShowShadow] = useState(true)
+  const [optionSelect, setOptionSelected] = useState(false)
+  const [validation, setValidation] = useState(false)
+
+  const comparePokemon = (pokemonId) => {
+    setOptionSelected(true)
+    setShowShadow(false)
+    setValidation(pokemonSeleted.id === pokemonId)
+  }
 
   const parsePokemon = ({ id, name, sprites }) => {
     return {
@@ -27,7 +37,7 @@ export const usePokemon = () => {
   }
 
   const getPokemons = async () => {
-    const randomNumbers = getRandomNumbers(TOTAL_RANDOM_NUMBERS, RANGE_BOTTOM_POKEMONS, RANGE_TOP_POKEMONS)
+    const randomNumbers = getRandomNumbers(TOTAL_RANDOM_NUMBERS, range_bottom, range_top)
 
     let randomPokemons = [];
     const pokemonsPromises = []
@@ -60,6 +70,10 @@ export const usePokemon = () => {
     setPokemons([])
     setPokemonSelected(null)
 
+    setShowShadow(true)
+    setOptionSelected(false)
+    setValidation(false)
+
     getPokemons()
   }
 
@@ -73,8 +87,13 @@ export const usePokemon = () => {
     pokemons,
     pokemonSeleted,
     hasError,
+    
+    showShadow,
+    optionSelect,
+    validation,
 
     // methods
     handleNew,
+    comparePokemon,
   }
 };
